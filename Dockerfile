@@ -13,4 +13,7 @@ WORKDIR /verdaccio
 
 USER nobody
 
+HEALTHCHECK --timeout=5s --start-period=20s CMD \
+  wget http://127.0.0.1:4873/ -q -S -O /dev/null 2>&1 | grep -q -F '200 OK'
+
 CMD exec verdaccio
