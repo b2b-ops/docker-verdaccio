@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -eu
+
+BATS_VERSION="${BATS_VERSION:-1.1.0}"
+
+export PATH="/opt/bats-core-$BATS_VERSION/libexec/bats-core:$PATH"
+
+apk add bash curl
+
+curl -fsSL "https://github.com/bats-core/bats-core/archive/v$BATS_VERSION.tar.gz" \
+  | tar -C /opt -xzf -
+
+cd / && exec bats -r /tests

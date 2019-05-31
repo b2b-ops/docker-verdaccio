@@ -1,0 +1,15 @@
+language: python
+
+env:
+  global:
+    - COMPOSE_FILE=docker-compose.test.yml
+
+services:
+  - docker
+
+install:
+  - pip install --upgrade docker-compose
+  - docker-compose version
+
+script:
+  - docker-compose run --rm sut

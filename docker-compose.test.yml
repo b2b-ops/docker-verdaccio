@@ -1,0 +1,13 @@
+---
+version: '2'
+
+services:
+  sut:
+    build: .
+    user: root
+    command: /tests/run
+    volumes:
+      - ./tests:/tests:ro
+    environment:
+      VERDACCIO_VERSION: 4.0.1
+      BATS_VERSION: 1.1.0
